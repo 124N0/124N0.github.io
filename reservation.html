@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crete+Round&family=Poppins:wght@100;400;500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/CSS/reservation.css" />
+    <title>Reno Spaghetto</title>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <div id="nav-bar">
+      <nav>
+        <a href="index.html"
+          ><img width="25%" class="logo" src="/SOURCE/logo.png" alt=""
+        /></a>
+        <ul>
+          <li class="menu"><a href="menu.html">Menu</a></li>
+          <li class="reservation">
+            <a href="reservation.html">Reservation</a>
+          </li>
+          <li class="order"><a href="order.html">Online Order</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- END OF NAV -->
+    <div id="page">
+      <div class="judul">
+        <h1 style="font-weight: lighter">Reserve Table</h1>
+        <hr />
+        <h3 style="font-weight: lighter">
+          Please fill the form below accurately to enable us serve you better
+        </h3>
+      </div>
+      <!-- Schedule section -->
+      <div id="schedule">
+        <select id="day">
+          <option value="">Day</option>
+        </select>
+        <select id="month">
+          <option value="">Month</option>
+        </select>
+        <select id="year">
+          <option value="">Year</option>
+        </select>
+        <select id="time">
+          <option value="">Select Time</option>
+        </select>
+        <select id="people">
+          <option value="">Number of People</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+        <div id="smoking-options">
+          <label>Smoking</label>
+          <div class="toggle">
+            <input type="checkbox" id="smoking-toggle" />
+            <label for="smoking-toggle"></label>
+          </div>
+          <label>Non-Smoking</label>
+        </div>
+      </div>
+      <!-- Biodata section -->
+      <div id="biodata">
+        <input style="width: 94%" type="text" placeholder="Full Name" />
+        <input style="width: 94%" type="text" placeholder="Email" />
+        <input style="width: 94%" type="text" placeholder="Phone" />
+        <input
+          style="width: 94%; height: 30px"
+          type="text"
+          placeholder="Note"
+        />
+      </div>
+
+      <!-- Submit button -->
+      <button id="submit-btn" onclick="submitForm()">Submit</button>
+    </div>
+    <div id="iklan" style="display: none">
+      <button id="close-btn" onclick="closeAd()">X</button>
+      <h3 class="Title">
+        We apologize because this feature is still not available in your country
+      </h3>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+      function generateDateOptions() {
+        var daySelect = document.getElementById("day");
+        var monthSelect = document.getElementById("month");
+        var yearSelect = document.getElementById("year");
+
+        daySelect.innerHTML = '<option value="">Day</option>';
+        monthSelect.innerHTML = '<option value="">Month</option>';
+        yearSelect.innerHTML = '<option value="">Year</option>';
+
+        var currentYear = new Date().getFullYear();
+
+        for (var i = 1; i <= 31; i++) {
+          var option = document.createElement("option");
+          option.value = i;
+          option.textContent = i;
+          daySelect.appendChild(option);
+        }
+
+        var months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        for (var i = 0; i < months.length; i++) {
+          var option = document.createElement("option");
+          option.value = i + 1;
+          option.textContent = months[i];
+          monthSelect.appendChild(option);
+        }
+
+        for (var i = currentYear; i <= currentYear + 4; i++) {
+          var option = document.createElement("option");
+          option.value = i;
+          option.textContent = i;
+          yearSelect.appendChild(option);
+        }
+      }
+
+      function generateTimeOptions() {
+        var timeSelect = document.getElementById("time");
+
+        timeSelect.innerHTML = '<option value="">Select Time</option>';
+
+        for (var i = 16; i <= 22; i++) {
+          var option = document.createElement("option");
+          option.value = i + ":00";
+          option.textContent = i + ":00";
+          timeSelect.appendChild(option);
+        }
+      }
+      function submitForm() {
+        document.getElementById("iklan").style.display = "block";
+      }
+      function closeAd() {
+        document.getElementById("iklan").style.display = "none";
+      }
+      generateDateOptions();
+      generateTimeOptions();
+    </script>
+  </body>
+</html>
